@@ -1,0 +1,53 @@
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background-image: url();
+}
+
+.navbar-spacer {
+  margin-top: 70px;
+}
+
+.hero {
+  min-height: 70vh;
+  background: linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55)),
+    url('/public/images/hero-construction.jpg') center/cover no-repeat;
+  color: #fff;
+}
+
+.hero-box {
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+}
+
+.placeholder-image {
+  height: 180px;
+  background-color: #f0f0f0;
+  color: #777;
+  font-size: 0.9rem;
+}
+
+.team-photo {
+  height: 220px;
+  object-fit: cover;
+}
+
+.text-truncate-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.cta-section {
+  background: linear-gradient(135deg, #343a40, #212529);
+}
+
+footer {
+  margin-top: auto;
+}
+
+
+.minicard {
+  background: #999962;
+}

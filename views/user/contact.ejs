@@ -1,0 +1,43 @@
+<%- include('../partials/header') %>
+<%- include('../partials/navbar') %>
+
+<section class="py-5">
+  <div class="container">
+    <h1 class="mb-4">Contact Us</h1>
+
+    <% if (success) { %>
+      <div class="alert alert-success"><%= success %></div>
+    <% } %>
+    <% if (error) { %>
+      <div class="alert alert-danger"><%= error %></div>
+    <% } %>
+
+    <div class="row g-4">
+      <div class="col-md-7">
+        <form method="POST" action="/contact" novalidate data-aos="fade-left">
+          <div class="mb-3">
+            <label class="form-label">Name</label>
+            <input name="name" type="text" class="form-control" required />
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Email</label>
+            <input name="email" type="email" class="form-control" required />
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Message</label>
+            <textarea name="message" class="form-control" rows="5" required></textarea>
+          </div>
+          <button type="submit" class="btn btn-warning px-4">Send Message</button>
+        </form>
+      </div>
+      <div class="col-md-5" data-aos="zoom-in">
+        <h5 class="mb-3">Office Address</h5>
+        <p>Fourth Floor, 3-109/22, Global Avenue <br />Bikarnakatta,Kulshekar,Manglore <br />Dakshina Kannada,Karnataka 575005 </p>
+        <p><strong>Phone:</strong> +91-9008517399 </p>
+        <p><strong>Email:</strong> shahidshukriyaconstructions@gmail.com</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<%- include('../partials/footer') %>

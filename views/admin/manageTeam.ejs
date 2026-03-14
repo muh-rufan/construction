@@ -1,0 +1,59 @@
+<%- include('../partials/header') %>
+
+<nav class="navbar navbar-dark bg-dark">
+  <div class="container">
+    <a class="navbar-brand" href="/admin/dashboard">Admin Panel</a>
+    <a class="btn btn-outline-light btn-sm" href="/admin/team/add">Add Member</a>
+  </div>
+</nav>
+
+<section class="py-5">
+  <div class="container">
+    <h1 class="mb-4">Manage Team</h1>
+    <% if (team && team.length) { %>
+      <div class="table-responsive">
+        <table class="table table-striped align-middle">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Name</th>
+              <th>Position</th>
+              <th>Email</th>
+              <th>Photo</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% team.forEach(function(member) { %>
+              <tr>
+                <td><%= member.id %></td>
+                <td><%= member.name %></td>
+                <td><%= member.position %></td>
+                <td><%= member.email %></td>
+                <td>
+                  <% if (member.photo) { %>
+                    <img src="<%= member.photo %>" alt="" class="img-thumbnail" style="max-width: 60px;" />
+                  <% } else { %>
+                    <span class="text-muted">No photo</span>
+                  <% } %>
+                </td>
+                <td>
+                  <a href="/admin/team/edit/<%= member.id %>" class="btn btn-sm btn-primary">Edit</a>
+                  <form method="POST" action="/admin/team/delete/<%= member.id %>" class="d-inline">
+                    <button class="btn btn-sm btn-danger" onclick="return confirm('Delete this member?');">
+                      Delete
+                    </button>
+                  </form>
+                </td>
+              </tr>
+            <% }) %>
+          </tbody>
+        </table>
+      </div>
+    <% } else { %>
+      <p class="text-muted">No team members yet.</p>
+    <% } %>
+  </div>
+</section>
+
+<%- include('../partials/footer') %>

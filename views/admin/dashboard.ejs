@@ -1,0 +1,52 @@
+<%- include('../partials/header') %>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container">
+    <a class="navbar-brand fw-bold" href="/admin/dashboard">Admin Panel</a>
+    <div class="collapse navbar-collapse">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link" href="/admin/projects">Projects</a></li>
+        <li class="nav-item"><a class="nav-link" href="/admin/team">Team</a></li>
+        <li class="nav-item"><a class="nav-link" href="/admin/messages">Messages</a></li>
+        <li class="nav-item"><a class="nav-link" href="/admin/logout">Logout</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<section class="py-5">
+  <div class="container">
+    <h1 class="mb-4">Dashboard</h1>
+    <div class="row g-4">
+      <div class="col-md-4">
+        <div class="card text-center shadow-sm">
+          <div class="card-body">
+            <h5 class="card-title">Projects</h5>
+            <p class="display-6"><%= projectCount %></p>
+            <a href="/admin/projects" class="btn btn-outline-primary btn-sm">Manage Projects</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card text-center shadow-sm">
+          <div class="card-body">
+            <h5 class="card-title">Team Members</h5>
+            <p class="display-6"><%= teamCount %></p>
+            <a href="/admin/team" class="btn btn-outline-primary btn-sm">Manage Team</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card text-center shadow-sm">
+          <div class="card-body">
+            <h5 class="card-title">Contact Messages</h5>
+            <p class="display-6"><%= messageCount %></p>
+            <a href="/admin/messages" class="btn btn-outline-primary btn-sm">View Messages</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<%- include('../partials/footer') %>

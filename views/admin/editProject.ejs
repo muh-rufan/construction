@@ -1,0 +1,42 @@
+<%- include('../partials/header') %>
+
+<nav class="navbar navbar-dark bg-dark">
+  <div class="container">
+    <a class="navbar-brand" href="/admin/dashboard">Admin Panel</a>
+    <a class="btn btn-outline-light btn-sm" href="/admin/projects">Back to Projects</a>
+  </div>
+</nav>
+
+<section class="py-5">
+  <div class="container">
+    <h1 class="mb-4">Edit Project</h1>
+    <% if (error) { %>
+      <div class="alert alert-danger"><%= error %></div>
+    <% } %>
+    <form method="POST" action="/admin/projects/edit/<%= project.id %>" enctype="multipart/form-data">
+      <div class="mb-3">
+        <label class="form-label">Title</label>
+        <input name="title" type="text" class="form-control" value="<%= project.title %>" required />
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Description</label>
+        <textarea name="description" class="form-control" rows="5" required><%= project.description %></textarea>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Current Image</label><br />
+        <% if (project.image) { %>
+          <img src="<%= project.image %>" alt="" class="img-thumbnail mb-2" style="max-width: 150px;" />
+        <% } else { %>
+          <p class="text-muted">No image uploaded.</p>
+        <% } %>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">New Image (optional)</label>
+        <input name="image" type="file" class="form-control" accept="image/*" />
+      </div>
+      <button type="submit" class="btn btn-warning">Update Project</button>
+    </form>
+  </div>
+</section>
+
+<%- include('../partials/footer') %>

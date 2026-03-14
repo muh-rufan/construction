@@ -1,0 +1,46 @@
+<%- include('../partials/header') %>
+
+<nav class="navbar navbar-dark bg-dark">
+  <div class="container">
+    <a class="navbar-brand" href="/admin/dashboard">Admin Panel</a>
+    <a class="btn btn-outline-light btn-sm" href="/admin/team">Back to Team</a>
+  </div>
+</nav>
+
+<section class="py-5">
+  <div class="container">
+    <h1 class="mb-4">Edit Team Member</h1>
+    <% if (error) { %>
+      <div class="alert alert-danger"><%= error %></div>
+    <% } %>
+    <form method="POST" action="/admin/team/edit/<%= member.id %>" enctype="multipart/form-data">
+      <div class="mb-3">
+        <label class="form-label">Name</label>
+        <input name="name" type="text" class="form-control" value="<%= member.name %>" required />
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Position</label>
+        <input name="position" type="text" class="form-control" value="<%= member.position %>" required />
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Email</label>
+        <input name="email" type="email" class="form-control" value="<%= member.email %>" required />
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Current Photo</label><br />
+        <% if (member.photo) { %>
+          <img src="<%= member.photo %>" alt="" class="img-thumbnail mb-2" style="max-width: 120px;" />
+        <% } else { %>
+          <p class="text-muted">No photo uploaded.</p>
+        <% } %>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">New Photo (optional)</label>
+        <input name="photo" type="file" class="form-control" accept="image/*" />
+      </div>
+      <button type="submit" class="btn btn-warning">Update Member</button>
+    </form>
+  </div>
+</section>
+
+<%- include('../partials/footer') %>

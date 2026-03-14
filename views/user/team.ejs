@@ -1,0 +1,36 @@
+<%- include('../partials/header') %>
+<%- include('../partials/navbar') %>
+
+<section class="py-5">
+  <div class="container">
+    <h1 class="mb-4">Our Team</h1>
+    <div class="row g-4 " data-aos="fade-up">
+      <% if (team && team.length) { %>
+        <% team.forEach(function(member) { %>
+          <div class="col-md-4">
+            <div class="card h-100 text-center shadow-sm">
+              <% if (member.photo) { %>
+                <img src="<%= member.photo %>" class="card-img-top team-photo" alt="<%= member.name %>" />
+              <% } else { %>
+                <div class="placeholder-image card-img-top d-flex align-items-center justify-content-center">
+                  <span>No Photo</span>
+                </div>
+              <% } %>
+              <div class="card-body">
+                <h5 class="card-title"><%= member.name %></h5>
+                <p class="card-text text-muted"><%= member.position %></p>
+                <% if (member.email) { %>
+                  <p class="card-text small"><i class="bi bi-envelope me-1"></i><%= member.email %></p>
+                <% } %>
+              </div>
+            </div>
+          </div>
+        <% }) %>
+      <% } else { %>
+        <p class="text-muted">Team members will be added soon.</p>
+      <% } %>
+    </div>
+  </div>
+</section>
+
+<%- include('../partials/footer') %>

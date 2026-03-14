@@ -1,0 +1,43 @@
+<%- include('../partials/header') %>
+
+<nav class="navbar navbar-dark bg-dark">
+  <div class="container">
+    <a class="navbar-brand" href="/admin/dashboard">Admin Panel</a>
+  </div>
+</nav>
+
+<section class="py-5">
+  <div class="container">
+    <h1 class="mb-4">Contact Messages</h1>
+    <% if (messages && messages.length) { %>
+      <div class="table-responsive">
+        <table class="table table-striped align-middle">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Message</th>
+              <th>Created</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% messages.forEach(function(m) { %>
+              <tr>
+                <td><%= m.id %></td>
+                <td><%= m.name %></td>
+                <td><%= m.email %></td>
+                <td><%= m.message %></td>
+                <td><%= m.created_at %></td>
+              </tr>
+            <% }) %>
+          </tbody>
+        </table>
+      </div>
+    <% } else { %>
+      <p class="text-muted">No messages yet.</p>
+    <% } %>
+  </div>
+</section>
+
+<%- include('../partials/footer') %>

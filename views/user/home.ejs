@@ -1,0 +1,139 @@
+<%- include('../partials/header') %>
+<%- include('../partials/navbar') %>
+
+<section class="hero d-flex align-items-center">
+  <div class="container text-center text-lg-start">
+    <div class="row align-items-center">
+      <div class="col-lg-7" data-aos="fade-right">
+        <h1 class="display-4 fw-bold mb-3 text-uppercase">
+          Building Your Vision, <span class="text-warning">Stronger</span>
+        </h1>
+        <p class="lead mb-4">
+          Construction Co. delivers high-quality construction solutions for residential,
+          commercial, and industrial projects with decades of experience.
+        </p>
+        <a href="/projects" class="btn btn-warning btn-lg me-2">View Projects</a>
+        <a href="/contact" class="btn btn-outline-light btn-lg">Request a Quote</a>
+      </div>
+      <div class="col-lg-5 d-none d-lg-block ">
+        <div class="hero-box shadow-lg minicard"  data-aos="zoom-in">
+          <h3 class="fw-bold mb-3">Why Choose Us?</h3>
+          <ul class="list-unstyled">
+            <li><i class="bi bi-check-circle-fill text-warning me-2"></i> On-time delivery</li>
+            <li><i class="bi bi-check-circle-fill text-warning me-2"></i> Certified engineers</li>
+            <li><i class="bi bi-check-circle-fill text-warning me-2"></i> Transparent pricing</li>
+            <li><i class="bi bi-check-circle-fill text-warning me-2"></i> Safety-first approach</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="py-5 bg-light">
+  <div class="container">
+    <h2 class="text-center mb-4">Our Services</h2>
+    <div class="row g-4">
+      <div class="col-md-4" data-aos="fade-up">
+        <div class="card h-100 shadow-sm">
+          <div class="card-body">
+            <h5 class="card-title">Residential Construction</h5>
+            <p class="card-text">
+              Custom homes, renovations, and extensions built with superior craftsmanship.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4" data-aos="fade-up">
+        <div class="card h-100 shadow-sm">
+          <div class="card-body">
+            <h5 class="card-title">Commercial Projects</h5>
+            <p class="card-text">
+              Offices, retail spaces, and complexes designed for performance and branding.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4" data-aos="fade-up">
+        <div class="card h-100 shadow-sm">
+          <div class="card-body">
+            <h5 class="card-title">Infrastructure & Industrial</h5>
+            <p class="card-text">
+              Warehouses, factories, and infrastructure built to last under demanding conditions.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="py-5">
+  <div class="container">
+    <h2 class="text-center mb-4">Featured Projects</h2>
+    <div class="row g-4">
+      <% if (projects && projects.length) { %>
+        <% projects.forEach(function(project) { %>
+          <div class="col-md-4" data-aos="fade-up">
+            <div class="card h-100 shadow-sm">
+              <% if (project.image) { %>
+                <img src="<%= project.image %>" class="card-img-top" alt="<%= project.title %>" />
+              <% } else { %>
+                <div class="placeholder-image card-img-top d-flex align-items-center justify-content-center">
+                  <span>No Image</span>
+                </div>
+              <% } %>
+              <div class="card-body">
+                <h5 class="card-title"><%= project.title %></h5>
+                <p class="card-text text-truncate-3"><%= project.description %></p>
+              </div>
+            </div>
+          </div>
+        <% }) %>
+      <% } else { %>
+        <p class="text-center text-muted">No projects available yet.</p>
+      <% } %>
+    </div>
+  </div>
+</section>
+
+<section class="py-5 bg-light">
+  <div class="container">
+    <h2 class="text-center mb-4">Meet Our Team</h2>
+    <div class="row g-4">
+      <% if (team && team.length) { %>
+        <% team.forEach(function(member) { %>
+          <div class="col-md-4" data-aos="fade-up">
+            <div class="card h-100 text-center shadow-sm">
+              <% if (member.photo) { %>
+                <img src="<%= member.photo %>" class="card-img-top team-photo" alt="<%= member.name %>" />
+              <% } else { %>
+                <div class="placeholder-image card-img-top d-flex align-items-center justify-content-center">
+                  <span>No Photo</span>
+                </div>
+              <% } %>
+              <div class="card-body">
+                <h5 class="card-title"><%= member.name %></h5>
+                <p class="card-text text-muted"><%= member.position %></p>
+              </div>
+            </div>
+          </div>
+        <% }) %>
+      <% } else { %>
+        <p class="text-center text-muted">Team members will be added soon.</p>
+      <% } %>
+    </div>
+  </div>
+</section>
+
+<section class="py-5 cta-section">
+  <div class="container text-center">
+    <h2 class="mb-3 text-light">Ready to start your next project?</h2>
+    <p class="lead text-light mb-4">
+      Contact our specialists today for a free consultation and project estimate.
+    </p>
+    <a href="/contact" class="btn btn-warning btn-lg " data-aos="zoom-in">Contact Us</a>
+  </div>
+</section>
+
+<%- include('../partials/footer') %>

@@ -1,0 +1,36 @@
+<%- include('../partials/header') %>
+<%- include('../partials/navbar') %>
+
+<section class="py-5">
+  <div class="container">
+    <h1 class="mb-4">Our Projects</h1>
+    <div class="row g-4" data-aos="fade-up" >
+      <% if (projects && projects.length) { %>
+        <% projects.forEach(function(project) { %>
+          <div class="col-md-4">
+            <div class="card h-100 shadow-sm">
+              <% if (project.image) { %>
+                <img src="<%= project.image %>" class="card-img-top" alt="<%= project.title %>" />
+              <% } else { %>
+                <div class="placeholder-image card-img-top d-flex align-items-center justify-content-center">
+                  <span>No Image</span>
+                </div>
+              <% } %>
+              <div class="card-body">
+                <h5 class="card-title"><%= project.title %></h5>
+                <p class="card-text"><%= project.description %></p>
+                <p class="card-text">
+                  <small class="text-muted">Created on <%= project.created_at.toDateString ? project.created_at.toDateString() : project.created_at %></small>
+                </p>
+              </div>
+            </div>
+          </div>
+        <% }) %>
+      <% } else { %>
+        <p class="text-muted">No projects have been added yet.</p>
+      <% } %>
+    </div>
+  </div>
+</section>
+
+<%- include('../partials/footer') %>

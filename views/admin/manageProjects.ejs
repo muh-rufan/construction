@@ -1,0 +1,57 @@
+<%- include('../partials/header') %>
+
+<nav class="navbar navbar-dark bg-dark">
+  <div class="container">
+    <a class="navbar-brand" href="/admin/dashboard">Admin Panel</a>
+    <a class="btn btn-outline-light btn-sm" href="/admin/projects/add">Add Project</a>
+  </div>
+</nav>
+
+<section class="py-5">
+  <div class="container">
+    <h1 class="mb-4">Manage Projects</h1>
+    <% if (projects && projects.length) { %>
+      <div class="table-responsive">
+        <table class="table table-striped align-middle">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Title</th>
+              <th>Image</th>
+              <th>Created</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% projects.forEach(function(project) { %>
+              <tr>
+                <td><%= project.id %></td>
+                <td><%= project.title %></td>
+                <td>
+                  <% if (project.image) { %>
+                    <img src="<%= project.image %>" alt="" class="img-thumbnail" style="max-width: 80px;" />
+                  <% } else { %>
+                    <span class="text-muted">No image</span>
+                  <% } %>
+                </td>
+                <td><%= project.created_at %></td>
+                <td>
+                  <a href="/admin/projects/edit/<%= project.id %>" class="btn btn-sm btn-primary">Edit</a>
+                  <form method="POST" action="/admin/projects/delete/<%= project.id %>" class="d-inline">
+                    <button class="btn btn-sm btn-danger" onclick="return confirm('Delete this project?');">
+                      Delete
+                    </button>
+                  </form>
+                </td>
+              </tr>
+            <% }) %>
+          </tbody>
+        </table>
+      </div>
+    <% } else { %>
+      <p class="text-muted">No projects yet.</p>
+    <% } %>
+  </div>
+</section>
+
+<%- include('../partials/footer') %>
