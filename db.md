@@ -70,10 +70,3 @@ description TEXT NOT NULL,
 image VARCHAR(255),
 created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
-
-drop table team;
-show tables;$2b$10$lQc.OiilTdNYivWa0u0VxO6jG5hpWehLwKZAdbZbO7HINYdnkMBDa
-select \* from users;
-truncate admins;
-desc team;
-insert into admins (username,password)values("muhammadrufanrufan@gmail.com","$2b$10$lQc.OiilTdNYivWa0u0VxO6jG5hpWehLwKZAdbZbO7HINYdnkMBDa");
