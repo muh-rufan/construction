@@ -2,94 +2,78 @@ show databases;
 create database construction_db;
 use construction_db;
 show tables;
+
 CREATE TABLE users (
-  id INT AUTO_INCREMENT PRIMARY KEY,
-  name VARCHAR(100) NOT NULL,
-  email VARCHAR(150) UNIQUE NOT NULL,
-  password VARCHAR(255) NOT NULL,
-  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+id INT AUTO_INCREMENT PRIMARY KEY,
+name VARCHAR(100) NOT NULL,
+email VARCHAR(150) NOT NULL UNIQUE,
+password VARCHAR(255) NOT NULL,
+is_verified BOOLEAN DEFAULT FALSE,
+verification_token VARCHAR(255),
+verification_token_expires DATETIME,
+created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
-
-
-CREATE TABLE projects (
-  id INT AUTO_INCREMENT PRIMARY KEY,
-  title VARCHAR(255),
-  description TEXT,
-  image VARCHAR(255),
-  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
-
-
-
 
 CREATE TABLE team (
-  id INT AUTO_INCREMENT PRIMARY KEY,
-  name VARCHAR(100) NOT NULL,
-  position VARCHAR(100) NOT NULL,
-  email VARCHAR(150),
-  photo VARCHAR(255),
-  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+id INT AUTO_INCREMENT PRIMARY KEY,
+name VARCHAR(100) NOT NULL,
+position VARCHAR(100) NOT NULL,
+email VARCHAR(150),
+photo VARCHAR(255),
+created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
-
-
-
 
 CREATE TABLE messages (
-  id INT AUTO_INCREMENT PRIMARY KEY,
-  name VARCHAR(100),
-  email VARCHAR(100),
-  message TEXT,
-  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+id INT AUTO_INCREMENT PRIMARY KEY,
+name VARCHAR(100),
+email VARCHAR(100),
+message TEXT,
+created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-
-select * from users;
-
+select \* from users;
 
 CREATE TABLE admins (
-  id INT AUTO_INCREMENT PRIMARY KEY,
-  username VARCHAR(100) NOT NULL UNIQUE,
-  password VARCHAR(255) NOT NULL,
-  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+id INT AUTO_INCREMENT PRIMARY KEY,
+username VARCHAR(100) NOT NULL UNIQUE,
+password VARCHAR(255) NOT NULL,
+created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );CREATE TABLE contact_messages (
-  id INT AUTO_INCREMENT PRIMARY KEY,
-  name VARCHAR(100) NOT NULL,
-  email VARCHAR(150) NOT NULL,
-  message TEXT NOT NULL,
-  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+id INT AUTO_INCREMENT PRIMARY KEY,
+name VARCHAR(100) NOT NULL,
+email VARCHAR(150) NOT NULL,
+message TEXT NOT NULL,
+created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-
-
-	CREATE TABLE notifications (
-	  id INT AUTO_INCREMENT PRIMARY KEY,
-	  title VARCHAR(255) NOT NULL,
-	  message TEXT NOT NULL,
-	  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-	);
-    
-    CREATE TABLE user_notifications (
-  id INT AUTO_INCREMENT PRIMARY KEY,
-  user_id INT NOT NULL,
-  notification_id INT NOT NULL,
-  is_read BOOLEAN DEFAULT FALSE,
-  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
-  FOREIGN KEY (notification_id) REFERENCES notifications(id) ON DELETE CASCADE
+CREATE TABLE notifications (
+id INT AUTO_INCREMENT PRIMARY KEY,
+title VARCHAR(255) NOT NULL,
+message TEXT NOT NULL,
+created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-    CREATE TABLE projects (
-  id INT AUTO_INCREMENT PRIMARY KEY,
-  title VARCHAR(255) NOT NULL,
-  description TEXT NOT NULL,
-  image VARCHAR(255),
-  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+CREATE TABLE user_notifications (
+id INT AUTO_INCREMENT PRIMARY KEY,
+user_id INT NOT NULL,
+notification_id INT NOT NULL,
+is_read BOOLEAN DEFAULT FALSE,
+created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+FOREIGN KEY (notification_id) REFERENCES notifications(id) ON DELETE CASCADE
 );
+
+CREATE TABLE projects (
+id INT AUTO_INCREMENT PRIMARY KEY,
+title VARCHAR(255) NOT NULL,
+description TEXT NOT NULL,
+image VARCHAR(255),
+created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
 drop table team;
 show tables;$2b$10$lQc.OiilTdNYivWa0u0VxO6jG5hpWehLwKZAdbZbO7HINYdnkMBDa
-select * from users;
+select \* from users;
 truncate admins;
 desc team;
 insert into admins (username,password)values("muhammadrufanrufan@gmail.com","$2b$10$lQc.OiilTdNYivWa0u0VxO6jG5hpWehLwKZAdbZbO7HINYdnkMBDa");
-
-
