@@ -3,7 +3,7 @@ const router = express.Router();
 const multer = require('multer');
 const path = require('path');
 const ProjectController = require('../controllers/projectController');
-const { isAdmin } = require('../middleware/authMiddleware');
+const { isAuthenticated, isAdmin } = require('../middleware/authMiddleware');
 
 // Multer config
 const storage = multer.diskStorage({
@@ -21,9 +21,9 @@ const upload = multer({ storage });
 // Public site routes
 router.get('/', ProjectController.showHome);
 router.get('/about', ProjectController.showAbout);
-router.get('/services', ProjectController.showServices);
-router.get('/projects', ProjectController.showProjects);
-router.get('/team', ProjectController.showTeam);
+router.get('/services', isAuthenticated, ProjectController.showServices);
+router.get('/projects', isAuthenticated, ProjectController.showProjects);
+router.get('/team', isAuthenticated, ProjectController.showTeam);
 
 // Admin project routes
 router.get('/admin/dashboard', isAdmin, ProjectController.showAdminDashboard);
