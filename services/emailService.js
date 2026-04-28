@@ -34,6 +34,7 @@ async function sendVerificationEmail(userEmail, token) {
             Verify Email
           </a>
         </p>
+        <p style="font-size: 14px; color: #555;">the token will expire in 1 hour for your security.</p>
         <p>If the button above does not work, copy and paste the following link into your browser:</p>
         <p><a href="${verifyUrl}">${verifyUrl}</a></p>
         <p style="font-size: 12px; color: #777;">This link will expire in 1 hour for your security.</p>

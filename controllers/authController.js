@@ -6,7 +6,7 @@ const { sendVerificationEmail } = require('../services/emailService');
 
 const AuthController = {
   showLogin(req, res) {
-    res.render('login', {
+    res.render('user/login', {
       error: null,
       success: null,
       info: null,
@@ -94,7 +94,7 @@ const AuthController = {
         console.error('Error sending verification email:', emailErr);
       }
 
-      return res.render('login', {
+      return res.render('user/login', {
         error: null,
         success: 'Registration successful. Please check your email to verify your account.',
         info: null,
@@ -117,7 +117,7 @@ const AuthController = {
       const { email, password } = req.body;
 
       if (!email || !password) {
-        return res.render('login', {
+        return res.render('user/login', {
           error: 'Email and password are required.',
           success: null,
           info: null,
@@ -129,7 +129,7 @@ const AuthController = {
 
       const user = await User.findByEmail(email);
       if (!user) {
-        return res.render('login', {
+        return res.render('user/login', {
           error: 'Invalid credentials.',
           success: null,
           info: null,
@@ -141,7 +141,7 @@ const AuthController = {
 
       const valid = await bcrypt.compare(password, user.password);
       if (!valid) {
-        return res.render('login', {
+        return res.render('user/login', {
           error: 'Invalid credentials.',
           success: null,
           info: null,
@@ -152,7 +152,7 @@ const AuthController = {
       }
 
       if (!user.is_verified) {
-        return res.render('login', {
+        return res.render('user/login', {
           error: 'You must verify your email before logging in.',
           success: null,
           info: 'Please check your inbox for the verification link.',
@@ -166,7 +166,7 @@ const AuthController = {
       res.redirect('/');
     } catch (err) {
       console.error(err);
-      res.render('login', {
+      res.render('user/login', {
         error: 'Login failed. Try again.',
         success: null,
         info: null,
@@ -184,7 +184,7 @@ const AuthController = {
   },
 
   showAdminLogin(req, res) {
-    res.render('login', {
+    res.render('admin/login', {
       error: null,
       success: null,
       info: null,
@@ -199,7 +199,7 @@ const AuthController = {
       const { username, password } = req.body;
 
       if (!username || !password) {
-        return res.render('login', {
+        return res.render('admin/login', {
           error: 'Username and password are required.',
           success: null,
           info: null,
@@ -211,7 +211,7 @@ const AuthController = {
 
       const admin = await Admin.findByUsername(username);
       if (!admin) {
-        return res.render('login', {
+        return res.render('admin/login', {
           error: 'Invalid credentials.',
           success: null,
           info: null,
@@ -223,7 +223,7 @@ const AuthController = {
 
       const valid = await bcrypt.compare(password, admin.password);
       if (!valid) {
-        return res.render('login', {
+        return res.render('admin/login', {
           error: 'Invalid credentials.',
           success: null,
           info: null,
@@ -237,7 +237,7 @@ const AuthController = {
       res.redirect('/admin/dashboard');
     } catch (err) {
       console.error(err);
-      res.render('login', {
+      res.render('admin/login', {
         error: 'Login failed. Try again.',
         success: null,
         info: null,
@@ -258,7 +258,7 @@ const AuthController = {
     try {
       const { token } = req.params;
       if (!token) {
-        return res.render('login', {
+        return res.render('user/login', {
           error: 'Verification link is invalid or has expired.',
           success: null,
           info: null,
@@ -270,7 +270,7 @@ const AuthController = {
 
       const user = await User.findByVerificationToken(token);
       if (!user || !user.verification_token_expires) {
-        return res.render('login', {
+        return res.render('user/login', {
           error: 'Verification link is invalid or has expired.',
           success: null,
           info: null,
@@ -283,7 +283,7 @@ const AuthController = {
       const now = new Date();
       const expiresAt = new Date(user.verification_token_expires);
       if (expiresAt < now) {
-        return res.render('login', {
+        return res.render('user/login', {
           error: 'Verification link is invalid or has expired.',
           success: null,
           info: null,
@@ -295,7 +295,7 @@ const AuthController = {
 
       await User.markVerified(user.id);
 
-      return res.render('login', {
+      return res.render('user/login', {
         error: null,
         success: 'Your email has been verified successfully. You can now log in.',
         info: null,
@@ -305,7 +305,7 @@ const AuthController = {
       });
     } catch (err) {
       console.error('Error verifying email:', err);
-      return res.render('login', {
+      return res.render('user/login', {
         error: 'Could not verify email. Please try again.',
         success: null,
         info: null,
@@ -321,7 +321,7 @@ const AuthController = {
       const { email } = req.body;
 
       if (!email) {
-        return res.render('login', {
+        return res.render('user/login', {
           error: 'Email is required to resend verification.',
           success: null,
           info: null,
@@ -334,7 +334,7 @@ const AuthController = {
       const user = await User.findByEmail(email);
 
       if (!user) {
-        return res.render('login', {
+        return res.render('user/login', {
           error: null,
           success: null,
           info: 'If an account with that email exists, you will receive a verification email shortly.',
@@ -345,7 +345,7 @@ const AuthController = {
       }
 
       if (user.is_verified) {
-        return res.render('login', {
+        return res.render('user/login', {
           error: null,
           success: null,
           info: 'This email is already verified. You can log in now.',
@@ -366,7 +366,7 @@ const AuthController = {
         console.error('Error resending verification email:', emailErr);
       }
 
-      return res.render('login', {
+      return res.render('user/login', {
         error: null,
         success: null,
         info: 'If an account with that email exists, you will receive a verification email shortly.',
@@ -376,7 +376,7 @@ const AuthController = {
       });
     } catch (err) {
       console.error('Error in resendVerification:', err);
-      return res.render('login', {
+      return res.render('user/login', {
         error: 'Could not resend verification email. Please try again.',
         success: null,
         info: null,
