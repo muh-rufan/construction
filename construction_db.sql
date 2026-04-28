@@ -38,8 +38,10 @@ CREATE TABLE `admins` (
 -- Dumping data for table `admins`
 --
 
-INSERT INTO `admins` (`id`, `username`, `password`, `created_at`) VALUES
-(1, 'admin', '$2b$10$GQzJyLUyFmnZqvJFSpm5KeNmJBUb3eYVZfDPUWLi/UbWZANUf29f2', '2026-03-14 19:51:30');
+INSERT INTO `admins` (`id`,`username`, `password`, `created_at`) VALUES
+( '1','muhammadrufanrufan@gmail.com', '$2b$10$v4fh7l9onVqlGvu3O.ihGO869jxD78kKyXYf2NGLF971rmJSlgLCS', '2026-03-14 19:51:30');
+-- pass: 123123
+
 
 -- --------------------------------------------------------
 
